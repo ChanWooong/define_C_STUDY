@@ -1,70 +1,73 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include <string.h>
 
-void sortWithoutDuplication(int arr[], int *size)
-{   
-    int temp, i, j, res, cnt=0;
-    for(i=0; i<10; i++)
-    scanf("%d", &arr[i]);
+#define MAXSIZE 5
 
-    for (i=0; i<10; i++){
-        for (j=0; j<10-1-i; j++){
-            if(arr[j] > arr[j+1]){
-                res = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = res;
-            }
-        }
-    }
-    for(i=0; i<9; i++){
-        for(j=1; j<=9; j++){
-            if(i==j)
-            continue;
+int top = -1;
+int stack[MAXSIZE];
 
-            if(arr[i] == arr[j]){
-                for(int p=j; p<10; p++){
-                    temp = arr[p+1];
-                    arr[p] = temp;
-                    if(arr[i] == arr[p]){
-                        temp = arr[p+1];
-                        arr[p] = temp;
-                    }
-                }
-            }
-        }
-        for(j=1; j<=9; j++){
-            if(i==j)
-            continue;
+void push(int n);
 
-            if(arr[i] == arr[j]){
-                for(int p=j; p<10; p++){
-                    temp = arr[p+1];
-                    arr[p] = temp;
-                    if(arr[i] == arr[p]){
-                        temp = arr[p+1];
-                        arr[p] = temp;
-                    }
-                }
-            }
-        }
-    }
-    for (i=0; i<10; i++){
-        if(arr[i+1] != 0)
-        cnt+=1;
-    }
-    *size = cnt;
-    for(i=0; i<=*size; i++)
-        printf("%d ", arr[i]);
-    
-    printf("\n");
+int pop();
+int isfull();
+int isempty();
+
+int main() {
+   int n;
+   char a;
+   while (1) {
+      printf("Enter(1:push 2:pop q:quit):");
+      scanf("%c", &a);
+      getchar();
+      
+      
+
+      if (a == '1') {
+         printf("value pushed:");
+         scanf("%d", &n);
+         getchar();
+         push(n);
+      }
+      else if (a == '2') {
+           int t = pop();
+         if(t!=-1)
+         printf("value popped %d\n",t);
+      }
+      else if (a == 'q') {
+         return 0;
+      }
+   }
 }
 
-int main()
-{
-    int n;
-    int arr[100] = {0};
 
-    sortWithoutDuplication(arr, &n);
+void push(int n) {
+   if (!isfull())
+   {
+      stack[++top] = n;
+      //printf("value pushed:%d\n", n);
+   }
+}
 
-    return 0;
+int pop() {
+   if (!isempty())
+      return stack[top--];
+   else return -1;
+
+}
+
+int isfull() {
+
+   if (top == 4) {
+      printf("Stack is Full!\n");
+      return 1;
+   }
+   else return 0;
+}
+
+int isempty() {
+   if (top == -1) {
+      printf("Stack is Empty!\n");
+      return 1;
+   }
+   else return 0;
 }
