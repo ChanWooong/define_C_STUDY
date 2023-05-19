@@ -8,7 +8,7 @@ int main()
     char delimiter = '#';
     char* ptoken;
 
-	scanf("%s", &ch); // 1
+	scanf("%s", ch); // 1
 	
     ptoken = strtok(ch, delimiter);
 
