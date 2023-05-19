@@ -18,3 +18,6 @@ int main()
 	}
 }
 
+strtok(char* str, char* del){
+/...
+}
