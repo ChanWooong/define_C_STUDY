@@ -9,6 +9,7 @@ int main(){
 	int choose;
 	char str[MAX] = {0};
 	char *change = NULL;
+	//char change[MAX] = {0};
 
 	printf("1.암호화\n2.복호화\n\n");
 	printf("메뉴 선택>> ");
