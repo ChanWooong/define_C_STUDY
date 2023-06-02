@@ -1,0 +1,55 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main()
+{
+	int j = 0, k = 0, sum = 0;
+	char equation[100] = { NULL, };
+	int number[50] = { NULL, };
+	char pandm[50] = { NULL, };
+
+	gets(equation);
+
+	for (int i = 0; i < strlen(equation); i++)
+	{
+		if ('0' <= equation[i] <= '9')
+		{
+			number[j] = atoi(&equation[i]);
+			j++;
+		}
+		else if (equation[i] == '+')
+		{
+			pandm[k] = equation[i];
+			k++;
+		}
+		else 
+		{
+			pandm[k] = equation[i];
+			k++;
+		}
+	}
+	j = 1;
+	k = 0;
+	sum = number[0];
+	while (1)
+	{
+		if (pandm[k] == NULL)
+			break;
+
+		if(pandm[k] == '+')
+		{
+			sum += number[j];
+			j++;
+			k++;
+		}
+		else
+		{
+			sum -= number[j];
+			j++;
+			k++;
+		}
+	}
+	printf("%d", sum);
+}
